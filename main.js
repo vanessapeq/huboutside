@@ -1,80 +1,118 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Reveal Animations on Scroll
+
+    // ==========================================
+    // 1. INTERSECTION OBSERVER — REVEAL ANIMATION
+    // ==========================================
     const revealElements = document.querySelectorAll('.reveal');
-    
-    const revealOnScroll = () => {
-        const triggerBottom = window.innerHeight * 0.85;
-        
-        revealElements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < triggerBottom) {
-                el.classList.add('active');
-            }
-        });
+
+    const observerOptions = {
+        threshold: 0.12,
+        rootMargin: '0px 0px -60px 0px'
     };
 
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll(); // Initial check
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                revealObserver.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, observerOptions);
 
-    // 2. Navbar Scroll Effect
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ==========================================
+    // 2. NAVBAR — SCROLL EFFECT
+    // ==========================================
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+
+    const handleNavScroll = () => {
+        if (window.scrollY > 60) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
+    };
 
-    // 3. Form Handling
+    window.addEventListener('scroll', handleNavScroll, { passive: true });
+    handleNavScroll(); // Run on init
+
+    // ==========================================
+    // 3. HERO — SUBTLE PARALLAX ON IMAGE
+    // ==========================================
+    const heroImg = document.querySelector('.hero-image img');
+
+    if (heroImg) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            if (scrolled < window.innerHeight * 1.5) {
+                heroImg.style.transform = `translateY(${scrolled * 0.08}px)`;
+            }
+        }, { passive: true });
+    }
+
+    // ==========================================
+    // 4. MEMBERSHIP FORM — SUBMIT HANDLER
+    // ==========================================
     const form = document.getElementById('membership-form');
     const successMessage = document.getElementById('success-message');
 
-    if (form) {
+    if (form && successMessage) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            
-            // Collect data (for demonstration)
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            console.log('Form submitted:', data);
 
-            // Hide form and show success message
-            form.style.display = 'none';
-            successMessage.classList.remove('hidden');
+            const nameInput = form.querySelector('#input-name');
+            const emailInput = form.querySelector('#input-email');
 
-            // Optional: reset form after delay if needed
-            // setTimeout(() => {
-            //     form.reset();
-            //     form.style.display = 'block';
-            //     successMessage.classList.add('hidden');
-            // }, 5000);
-        });
-    }
+            // Basic validation
+            if (!nameInput.value.trim() || !emailInput.value.trim()) return;
 
-    // 4. Parallax effect for hero image (subtle)
-    const heroImage = document.querySelector('.hero-image img');
-    if (heroImage) {
-        window.addEventListener('scroll', () => {
-            const scroll = window.scrollY;
-            heroImage.style.transform = `translateY(${scroll * 0.1}px)`;
-        });
-    }
-
-    // 5. Smooth Anchor Links (optional as HTML has it, but better support)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const target = document.querySelector(targetId);
-            if (target) {
-                window.scrollTo({
-                    top: target.offsetTop - 80, // Adjust for navbar height
-                    behavior: 'smooth'
-                });
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value.trim())) {
+                emailInput.style.borderBottomColor = '#EA9AB2';
+                emailInput.focus();
+                return;
             }
+
+            // Animate out form, show success
+            form.style.opacity = '0';
+            form.style.transform = 'translateY(-10px)';
+            form.style.transition = 'all 0.5s ease';
+
+            setTimeout(() => {
+                form.style.display = 'none';
+                successMessage.classList.remove('hidden');
+                successMessage.style.opacity = '0';
+                successMessage.style.transform = 'translateY(10px)';
+                successMessage.style.transition = 'all 0.6s ease';
+
+                requestAnimationFrame(() => {
+                    successMessage.style.opacity = '1';
+                    successMessage.style.transform = 'translateY(0)';
+                });
+            }, 500);
+        });
+    }
+
+    // ==========================================
+    // 5. SMOOTH ANCHOR SCROLL
+    // ==========================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            const targetId = anchor.getAttribute('href');
+            if (!targetId || targetId === '#') return;
+
+            const target = document.querySelector(targetId);
+            if (!target) return;
+
+            e.preventDefault();
+            const navH = navbar ? navbar.offsetHeight : 80;
+
+            window.scrollTo({
+                top: target.getBoundingClientRect().top + window.scrollY - navH,
+                behavior: 'smooth'
+            });
         });
     });
+
 });
