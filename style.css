@@ -234,72 +234,86 @@ h3 {
    HERO
    ========================================== */
 #hero {
+    position: relative;
     height: 100vh;
     min-height: 700px;
     display: flex;
+    align-items: flex-end;
     background-color: var(--green-deep);
+    /* fallback / colour bleed */
     overflow: hidden;
 }
 
-.hero-content {
-    flex: 0 0 45%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 160px 80px 80px;
-    position: relative;
-    z-index: 2;
-}
-
-.hero-text h1 {
-    font-size: clamp(4rem, 7.5vw, 8rem);
-    color: var(--white);
-    margin-bottom: 28px;
-}
-
-.hero-subtitle {
-    font-family: var(--font-light);
-    font-weight: 300;
-    font-size: clamp(1.1rem, 1.8vw, 1.6rem);
-    color: var(--pink-light);
-    margin-bottom: 52px;
-    max-width: 420px;
-    line-height: 1.5;
-}
-
-.hero-location {
+/* Full-bleed background image */
+.hero-bg {
     position: absolute;
-    bottom: 44px;
-    left: 80px;
-    font-family: var(--font-light);
-    font-weight: 300;
-    font-size: 0.75rem;
-    color: var(--green-sage);
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
+    inset: 0;
+    z-index: 0;
 }
 
-.hero-image {
-    flex: 0 0 55%;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-image img {
+.hero-bg img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center 20%;
     will-change: transform;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right,
-            var(--green-deep) 0%,
-            rgba(9, 55, 31, 0.4) 35%,
-            rgba(9, 55, 31, 0) 60%);
+    /* Deep green on the left where text lives, fades to transparent right */
+    background:
+        linear-gradient(to right,
+            rgba(9, 55, 31, 0.92) 0%,
+            rgba(9, 55, 31, 0.72) 40%,
+            rgba(9, 55, 31, 0.35) 70%,
+            rgba(9, 55, 31, 0.15) 100%),
+        /* Bottom gradient so text always readable */
+        linear-gradient(to top,
+            rgba(9, 55, 31, 0.8) 0%,
+            rgba(9, 55, 31, 0) 40%);
+}
+
+/* Text layer floats above */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 900px;
+    padding: 0 80px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.hero-text h1 {
+    font-size: clamp(3.5rem, 7vw, 8rem);
+    color: var(--white);
+    margin-bottom: 24px;
+}
+
+.hero-subtitle {
+    font-family: var(--font-light);
+    font-weight: 300;
+    font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+    color: var(--pink-light);
+    margin-bottom: 48px;
+    max-width: 540px;
+    line-height: 1.55;
+}
+
+.hero-location {
+    position: absolute;
+    bottom: 44px;
+    right: 60px;
+    font-family: var(--font-light);
+    font-weight: 300;
+    font-size: 0.72rem;
+    color: var(--green-sage);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    z-index: 2;
 }
 
 /* ==========================================
@@ -776,29 +790,14 @@ footer {
 @media (max-width: 1024px) {
 
     /* Hero */
-    #hero {
-        flex-direction: column;
-        height: auto;
-        min-height: 100svh;
-    }
-
     .hero-content {
-        flex: none;
-        padding: 140px 40px 60px;
-    }
-
-    .hero-image {
-        flex: none;
-        height: 55vw;
-        min-height: 300px;
-    }
-
-    .hero-overlay {
-        background: linear-gradient(to bottom, var(--green-deep) 0%, rgba(9, 55, 31, 0) 40%);
+        padding: 0 40px 80px;
+        max-width: 100%;
     }
 
     .hero-location {
-        left: 40px;
+        right: 40px;
+        bottom: 32px;
     }
 
     /* Stages */

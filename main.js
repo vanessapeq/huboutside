@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 3. HERO — SUBTLE PARALLAX ON IMAGE
     // ==========================================
-    const heroImg = document.querySelector('.hero-image img');
+    const heroImg = document.querySelector('.hero-bg img');
 
     if (heroImg) {
         window.addEventListener('scroll', () => {
