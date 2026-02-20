@@ -251,12 +251,13 @@ h3 {
     z-index: 0;
 }
 
-.hero-bg img {
+.hero-bg img,
+.hero-bg video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center 20%;
-    will-change: transform;
+    display: block;
 }
 
 .hero-overlay {

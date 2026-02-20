@@ -37,19 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', handleNavScroll, { passive: true });
     handleNavScroll(); // Run on init
 
-    // ==========================================
-    // 3. HERO — SUBTLE PARALLAX ON IMAGE
-    // ==========================================
-    const heroImg = document.querySelector('.hero-bg img');
-
-    if (heroImg) {
-        window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY;
-            if (scrolled < window.innerHeight * 1.5) {
-                heroImg.style.transform = `translateY(${scrolled * 0.08}px)`;
-            }
-        }, { passive: true });
-    }
+    // 3. HERO — Parallax removed (video background)
 
     // ==========================================
     // 4. MEMBERSHIP FORM — SUBMIT HANDLER
