@@ -288,18 +288,19 @@ h3 {
 }
 
 .hero-text h1 {
-    font-size: clamp(3.5rem, 7vw, 8rem);
+    font-size: clamp(2.8rem, 5.5vw, 6rem);
     color: var(--white);
     margin-bottom: 24px;
+    line-height: 1.0;
 }
 
 .hero-subtitle {
     font-family: var(--font-light);
     font-weight: 300;
-    font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+    font-size: clamp(1.3rem, 2vw, 1.9rem);
     color: var(--pink-light);
     margin-bottom: 48px;
-    max-width: 540px;
+    max-width: 580px;
     line-height: 1.55;
 }
 
