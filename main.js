@@ -37,8 +37,32 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', handleNavScroll, { passive: true });
     handleNavScroll(); // Run on init
 
-    // 3. HERO — Parallax removed (video background)
+    // 3. HANDWRITTEN TYPEWRITER EFFECT
+    // ==========================================
+    const typeElements = document.querySelectorAll('.typewrite');
+    const typeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.typed) {
+                entry.target.dataset.typed = "true";
+                const textToType = entry.target.getAttribute('data-text');
+                let charIndex = 0;
 
+                entry.target.classList.add('typing');
+
+                const typeInterval = setInterval(() => {
+                    if (charIndex < textToType.length) {
+                        entry.target.textContent += textToType.charAt(charIndex);
+                        charIndex++;
+                    } else {
+                        clearInterval(typeInterval);
+                        setTimeout(() => entry.target.classList.remove('typing'), 2000);
+                    }
+                }, 100);
+            }
+        });
+    }, observerOptions);
+
+    typeElements.forEach(el => typeObserver.observe(el));
     // ==========================================
     // 4. MEMBERSHIP FORM — SUBMIT HANDLER
     // ==========================================

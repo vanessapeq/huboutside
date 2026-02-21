@@ -4,6 +4,7 @@
 
 /* Fallback system: try CDN, use system stack if unavailable */
 @import url('https://fonts.cdnfonts.com/css/nohemi');
+@import url('https://fonts.cdnfonts.com/css/rockville-solid');
 
 /* ==========================================
    CSS CUSTOM PROPERTIES
@@ -384,113 +385,118 @@ h3 {
 }
 
 /* ==========================================
-   EDITORIAL STAGES
+   HANDWRITTEN STAGES
    ========================================== */
-.container-editorial {
-    padding-top: 60px;
-    padding-bottom: 100px;
-    max-width: 1200px;
-    margin: 0 auto;
+.handwritten-header {
+    margin-bottom: 60px;
+    padding: 80px 60px 0;
+    max-width: 1400px;
+    margin-inline: auto;
 }
 
-.editorial-header {
-    margin-bottom: 80px;
-    padding: 0 60px;
-}
-
-.editorial-grid {
+.hw-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 80px 40px;
-    padding: 0 60px;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    margin-bottom: 40px;
 }
 
-.ed-item {
+.hw-item {
+    position: relative;
+    height: 75vh;
+    min-height: 600px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    position: relative;
+    justify-content: flex-end;
+    overflow: hidden;
+    padding: 40px 30px;
 }
 
-.ed-img-wrap {
-    width: 80%;
-    max-width: 400px;
-    position: relative;
-    z-index: 2;
-    padding: 16px;
-    padding-bottom: 60px;
-    background: var(--cream-warm);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-    transition: transform 0.6s var(--ease-smooth), box-shadow 0.6s var(--ease-smooth);
+.hw-item:nth-child(even) {
+    margin-top: 40px;
+    /* staggered look */
 }
 
-.ed-img-wrap img {
+/* Base image */
+.hw-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.hw-bg img {
     width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
+    height: 100%;
     object-fit: cover;
-    object-position: center 15%;
-    filter: contrast(1.15) saturate(0.8) brightness(0.95);
-    transition: filter 0.6s var(--ease-smooth);
+    object-position: center 20%;
+    filter: contrast(1.1) brightness(0.65) grayscale(20%);
+    transition: filter 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
 }
 
-.ed-item:hover .ed-img-wrap {
-    box-shadow: 0 45px 80px rgba(0, 0, 0, 0.6);
+.hw-item:hover .hw-bg img {
+    filter: contrast(1.1) brightness(0.85) grayscale(0%);
+    transform: scale(1.04);
 }
 
-.ed-item:hover .ed-img-wrap img {
-    filter: contrast(1.05) saturate(1.1) brightness(1);
+.hw-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(9, 55, 31, 0.8) 0%, rgba(9, 55, 31, 0.1) 60%);
+    z-index: 2;
 }
 
-.polaroid-tilt-left {
+/* Content */
+.hw-content {
+    position: relative;
+    z-index: 3;
+}
+
+.hw-decade {
+    font-family: var(--font-black);
+    font-size: 2.5rem;
+    color: var(--pink-dusty);
+    display: block;
+    margin-bottom: 16px;
+    line-height: 1;
+}
+
+.hw-text {
+    font-family: 'Rockville Solid', 'Caveat', cursive;
+    font-size: clamp(3rem, 5vw, 4rem);
+    color: var(--white);
+    line-height: 1.1;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     transform: rotate(-3deg);
 }
 
-.polaroid-tilt-right {
-    transform: rotate(4deg);
+.hw-item:nth-child(even) .hw-text {
+    transform: rotate(2deg);
 }
 
-.ed-item:hover .polaroid-tilt-left,
-.ed-item:hover .polaroid-tilt-right {
-    transform: rotate(0deg) scale(1.03);
-    z-index: 10;
-}
-
-.ed-text {
-    width: 90%;
-    position: relative;
-    z-index: 3;
-    padding-top: 32px;
-    text-align: center;
-}
-
-.ed-text p {
-    font-family: var(--font-light);
-    font-size: clamp(1.2rem, 1.8vw, 1.5rem);
-    line-height: 1.5;
-    color: var(--pink-light);
-}
-
-.ed-ghost-num {
-    position: absolute;
-    font-family: var(--font-black);
-    font-size: clamp(6.5rem, 10vw, 11rem);
-    line-height: 0.8;
+.hw-highlight {
     color: var(--pink-dusty);
-    opacity: 0.15;
-    z-index: -1;
-    pointer-events: none;
-    -webkit-text-stroke: 2px var(--pink-light);
-    top: -30px;
+    font-size: 1.15em;
+    display: inline-block;
 }
 
-.polaroid-tilt-left .ed-ghost-num {
-    left: -30px;
+.hw-highlight.typing::after {
+    content: '|';
+    animation: blink 0.7s infinite;
 }
 
-.polaroid-tilt-right .ed-ghost-num {
-    right: -30px;
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }
+
 
 /* ==========================================
    WHAT YOU FIND
@@ -868,27 +874,22 @@ footer {
         bottom: 32px;
     }
 
-    /* Editorial Stages */
-    .container-editorial {
-        padding-top: 40px;
-        padding-bottom: 80px;
+    /* Handwritten Stages */
+    .handwritten-header {
+        padding: 60px 40px 0;
     }
 
-    .editorial-header {
-        padding: 0 40px;
-        margin-bottom: 60px;
+    .hw-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .editorial-grid {
-        padding: 0 40px;
-        grid-template-columns: 1fr;
-        /* Switch to 1 column */
-        gap: 120px;
+    .hw-item {
+        height: 60vw;
+        min-height: 450px;
     }
 
-    .ed-img-wrap {
-        width: 70%;
-        max-width: none;
+    .hw-item:nth-child(even) {
+        margin-top: 0;
     }
 
     /* Cards */
@@ -951,22 +952,19 @@ footer {
         bottom: 32px;
     }
 
-    /* Editorial Stages */
-    .editorial-header {
-        padding: 0;
-        margin-bottom: 60px;
+    /* Handwritten Stages */
+    .handwritten-header {
+        padding: 40px 24px 0;
+        margin-bottom: 40px;
     }
 
-    .editorial-grid {
-        padding: 0;
+    .hw-grid {
         grid-template-columns: 1fr;
-        gap: 100px;
     }
 
-    .ed-img-wrap {
-        width: 90%;
-        padding-bottom: 30px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    .hw-item {
+        height: auto;
+        min-height: 500px;
     }
 
     .outside-content {
