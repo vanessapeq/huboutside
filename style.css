@@ -396,24 +396,28 @@ h3 {
 
 .hw-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
     width: 100%;
     margin-bottom: 40px;
 }
 
 .hw-item {
     position: relative;
-    height: 75vh;
-    min-height: 600px;
+    height: 440px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     overflow: hidden;
-    padding: 40px 30px;
+    padding: 40px 60px;
+    border-radius: 12px;
+    background-color: var(--bg-dark);
 }
 
 .hw-item:nth-child(even) {
-    margin-top: 40px;
+    margin-top: 0;
     /* staggered look */
 }
 
@@ -429,12 +433,13 @@ h3 {
     height: 100%;
     object-fit: cover;
     object-position: center 20%;
-    filter: contrast(1.1) brightness(0.65) grayscale(20%);
-    transition: filter 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
+    opacity: 0.08;
+    filter: contrast(1.1) grayscale(100%);
+    transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
 }
 
 .hw-item:hover .hw-bg img {
-    filter: contrast(1.1) brightness(0.85) grayscale(0%);
+    opacity: 0.2;
     transform: scale(1.04);
 }
 
@@ -450,28 +455,43 @@ h3 {
 .hw-content {
     position: relative;
     z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .hw-decade {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-family: var(--font-black);
-    font-size: 2.5rem;
-    color: var(--pink-dusty);
-    display: block;
-    margin-bottom: 16px;
+    font-size: clamp(8rem, 15vw, 13rem);
+    color: transparent;
+    -webkit-text-stroke: 1px var(--pink-dusty);
+    opacity: 0.15;
+    z-index: 2;
+    /* Still below main text */
     line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.05em;
 }
 
 .hw-text {
     font-family: 'Rockville Solid', 'Caveat', cursive;
-    font-size: clamp(3rem, 5vw, 4rem);
+    font-size: clamp(2.4rem, 4.5vw, 3.5rem);
     color: var(--white);
-    line-height: 1.1;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    transform: rotate(-3deg);
+    line-height: 1.25;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transform: rotate(-1.5deg);
+    max-width: 90%;
+    position: relative;
+    z-index: 3;
 }
 
 .hw-item:nth-child(even) .hw-text {
-    transform: rotate(2deg);
+    transform: rotate(1deg);
 }
 
 .hw-highlight {
@@ -876,16 +896,17 @@ footer {
 
     /* Handwritten Stages */
     .handwritten-header {
-        padding: 60px 40px 0;
+        padding: 40px 40px 0;
     }
 
     .hw-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 
     .hw-item {
-        height: 60vw;
-        min-height: 450px;
+        height: auto;
+        min-height: 400px;
+        padding: 40px;
     }
 
     .hw-item:nth-child(even) {
@@ -964,7 +985,8 @@ footer {
 
     .hw-item {
         height: auto;
-        min-height: 500px;
+        min-height: 350px;
+        padding: 32px 24px;
     }
 
     .outside-content {
