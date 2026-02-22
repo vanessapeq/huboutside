@@ -413,7 +413,7 @@ h3 {
     overflow: hidden;
     padding: 40px 60px;
     border-radius: 12px;
-    background-color: var(--bg-dark);
+    background-color: #000;
 }
 
 .hw-item:nth-child(even) {
@@ -433,13 +433,13 @@ h3 {
     height: 100%;
     object-fit: cover;
     object-position: center 20%;
-    opacity: 0.08;
-    filter: contrast(1.1) grayscale(100%);
+    opacity: 0.35;
+    filter: contrast(1.1) grayscale(60%);
     transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
 }
 
 .hw-item:hover .hw-bg img {
-    opacity: 0.2;
+    opacity: 0.55;
     transform: scale(1.04);
 }
 
@@ -447,7 +447,7 @@ h3 {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(9, 55, 31, 0.8) 0%, rgba(9, 55, 31, 0.1) 60%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 100%);
     z-index: 2;
 }
 
@@ -468,9 +468,12 @@ h3 {
     transform: translate(-50%, -50%);
     font-family: var(--font-black);
     font-size: clamp(8rem, 15vw, 13rem);
-    color: transparent;
-    -webkit-text-stroke: 1px var(--pink-dusty);
-    opacity: 0.15;
+    color: rgba(234, 154, 178, 0.08);
+    /* slight fill */
+    -webkit-text-stroke: 1.5px rgba(234, 154, 178, 0.5);
+    /* thicker lighter stroke */
+    opacity: 0.6;
+    /* increase visibility */
     z-index: 2;
     /* Still below main text */
     line-height: 1;
