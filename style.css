@@ -529,13 +529,13 @@ h3 {
 
 .card-bg-num {
     position: absolute;
-    bottom: -30px;
-    right: -10px;
+    bottom: -15px;
+    right: 0px;
     font-family: var(--font-black);
     font-weight: 900;
-    font-size: 10rem;
+    font-size: 7.5rem;
     color: var(--pink-light);
-    opacity: 0.5;
+    opacity: 0.4;
     z-index: 0;
     pointer-events: none;
     line-height: 1;
@@ -544,36 +544,38 @@ h3 {
 
 .card-label {
     display: block;
-    font-family: var(--font-light);
-    font-weight: 300;
+    font-family: var(--font-bold);
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 0.75rem;
-    color: var(--green-sage);
+    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    color: var(--green-deep);
     margin-bottom: 20px;
     position: relative;
     z-index: 1;
 }
 
 .card h3 {
-    font-family: var(--font-bold);
-    font-weight: 700;
+    font-family: var(--font-black);
+    font-weight: 900;
     font-size: clamp(1.4rem, 2vw, 1.8rem);
     margin-bottom: 18px;
     position: relative;
     z-index: 1;
     letter-spacing: -0.01em;
     line-height: 1.1;
+    color: var(--bg-dark);
 }
 
 .card p {
-    font-family: var(--font-light);
-    font-weight: 300;
+    font-family: var(--font-regular);
+    font-weight: 400;
     font-size: 1.05rem;
-    opacity: 0.75;
+    opacity: 0.9;
     position: relative;
     z-index: 1;
     line-height: 1.6;
+    color: var(--bg-dark);
 }
 
 /* ==========================================
