@@ -956,12 +956,18 @@ footer {
 
     .hw-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
     }
 
     .hw-item {
         height: auto;
-        min-height: 260px;
-        padding: 32px 24px;
+        min-height: 140px;
+        padding: 32px 16px;
+        border-radius: 8px;
+    }
+
+    .hw-decade {
+        font-size: clamp(6rem, 18vw, 8rem);
     }
 
     .outside-content {
