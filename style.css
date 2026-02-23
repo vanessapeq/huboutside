@@ -192,7 +192,7 @@ h3 {
 }
 
 #navbar.scrolled {
-    background: rgba(9, 55, 31, 0.85);
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     padding: 16px 0;
@@ -264,17 +264,17 @@ h3 {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    /* Deep green on the left where text lives, fades to transparent right */
+    /* Deep black on the left where text lives, fades to transparent right */
     background:
         linear-gradient(to right,
-            rgba(9, 55, 31, 0.92) 0%,
-            rgba(9, 55, 31, 0.72) 40%,
-            rgba(9, 55, 31, 0.35) 70%,
-            rgba(9, 55, 31, 0.15) 100%),
+            rgba(0, 0, 0, 0.92) 0%,
+            rgba(0, 0, 0, 0.72) 40%,
+            rgba(0, 0, 0, 0.35) 70%,
+            rgba(0, 0, 0, 0.15) 100%),
         /* Bottom gradient so text always readable */
         linear-gradient(to top,
-            rgba(9, 55, 31, 0.8) 0%,
-            rgba(9, 55, 31, 0) 40%);
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0) 40%);
 }
 
 /* Text layer floats above */
@@ -396,7 +396,7 @@ h3 {
 
 .hw-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 32px;
     width: 100%;
     margin-bottom: 40px;
