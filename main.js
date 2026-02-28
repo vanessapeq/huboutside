@@ -11,6 +11,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e) e.preventDefault();
         modal.classList.add('show');
         document.body.style.overflow = 'hidden'; // Lock scroll
+
+        // Populate birth year select if empty
+        const birthYearSelect = document.getElementById('input-birth-year');
+        if (birthYearSelect && birthYearSelect.options.length <= 1) {
+            const currentYear = new Date().getFullYear();
+            for (let year = currentYear - 14; year >= 1920; year--) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                birthYearSelect.appendChild(option);
+            }
+        }
     };
 
     const closeModal = () => {

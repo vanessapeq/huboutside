@@ -713,9 +713,12 @@ h3 {
     margin-bottom: 24px;
 }
 
-#membership-form input {
+#membership-form input,
+#membership-form select {
     flex: 1;
     background: transparent;
+    appearance: none;
+    -webkit-appearance: none;
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     padding: 18px 0;
@@ -725,6 +728,26 @@ h3 {
     font-size: 1.1rem;
     outline: none;
     transition: border-color var(--transition);
+}
+
+#membership-form select option {
+    background-color: var(--bg-dark);
+    color: var(--white);
+}
+
+#membership-form .form-row {
+    position: relative;
+}
+
+#membership-form .form-row:has(select)::after {
+    content: '▼';
+    font-size: 0.8rem;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 #membership-form input:focus {

@@ -158,8 +158,10 @@
                         <input type="email" name="email" id="input-email" placeholder="Email" required>
                     </div>
                     <div class="form-row">
-                        <input type="number" name="birth_year" id="input-birth-year"
-                            placeholder="Ano de Nascimento (Ex: 1990)" required>
+                        <select name="birth_year" id="input-birth-year" required>
+                            <option value="" disabled selected>Ano de Nascimento</option>
+                            <!-- Script will populate this -->
+                        </select>
                     </div>
                     <div class="form-row">
                         <input type="text" name="location" id="input-location" placeholder="Local de Residência"
