@@ -913,13 +913,15 @@ footer {
     /* Outside Club */
 
     #outside-club {
-        flex-direction: column;
+        flex-direction: column-reverse;
+        /* Content on top, image below on mobile */
     }
 
     .outside-image {
         flex: none;
-        height: 60vw;
-        min-height: 300px;
+        height: 100vw;
+        /* Increased height to show more of the photo */
+        min-height: 450px;
     }
 
     .outside-content {
