@@ -376,12 +376,23 @@ h3 {
 }
 
 #for-whom .container {
-    padding-bottom: 0;
+    padding-bottom: 120px;
+}
+
+.section-description {
+    font-family: var(--font-light);
+    font-weight: 300;
+    font-size: clamp(1.3rem, 2.2vw, 2.1rem);
+    line-height: 1.6;
+    max-width: 900px;
+    opacity: 0.9;
+    margin-top: 20px;
+    color: var(--white);
 }
 
 .section-title-big {
     font-size: clamp(3rem, 6vw, 6rem);
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 /* ==========================================
