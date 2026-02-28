@@ -710,7 +710,7 @@ h3 {
 .form-row {
     display: flex;
     gap: 24px;
-    margin-bottom: 0;
+    margin-bottom: 24px;
 }
 
 #membership-form input {

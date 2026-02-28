@@ -75,9 +75,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const nameInput = form.querySelector('#input-name');
             const emailInput = form.querySelector('#input-email');
+            const birthYearInput = form.querySelector('#input-birth-year');
+            const locationInput = form.querySelector('#input-location');
 
             // Basic validation
-            if (!nameInput.value.trim() || !emailInput.value.trim()) return;
+            if (!nameInput.value.trim() || !emailInput.value.trim() || !birthYearInput.value.trim() || !locationInput.value.trim()) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
 
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(emailInput.value.trim())) {
@@ -86,23 +91,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Animate out form, show success
-            form.style.opacity = '0';
-            form.style.transform = 'translateY(-10px)';
-            form.style.transition = 'all 0.5s ease';
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'A processar...';
+            submitBtn.disabled = true;
 
-            setTimeout(() => {
-                form.style.display = 'none';
-                successMessage.classList.remove('hidden');
-                successMessage.style.opacity = '0';
-                successMessage.style.transform = 'translateY(10px)';
-                successMessage.style.transition = 'all 0.6s ease';
+            // Call API
+            fetch('/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: nameInput.value.trim(),
+                    email: emailInput.value.trim(),
+                    birth_year: parseInt(birthYearInput.value.trim()),
+                    location: locationInput.value.trim()
+                })
+            })
+                .then(async (response) => {
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.error || 'Erro no servidor');
 
-                requestAnimationFrame(() => {
-                    successMessage.style.opacity = '1';
-                    successMessage.style.transform = 'translateY(0)';
+                    // Animate out form, show success
+                    form.style.opacity = '0';
+                    form.style.transform = 'translateY(-10px)';
+                    form.style.transition = 'all 0.5s ease';
+
+                    setTimeout(() => {
+                        form.style.display = 'none';
+                        successMessage.classList.remove('hidden');
+                        successMessage.style.opacity = '0';
+                        successMessage.style.transform = 'translateY(10px)';
+                        successMessage.style.transition = 'all 0.6s ease';
+
+                        requestAnimationFrame(() => {
+                            successMessage.style.opacity = '1';
+                            successMessage.style.transform = 'translateY(0)';
+                        });
+                    }, 500);
+                })
+                .catch(error => {
+                    console.error('API Error:', error);
+                    alert('Ocorreu um erro ao registar o seu lugar. Por favor, tente novamente mais tarde.');
+                    submitBtn.textContent = originalBtnText;
+                    submitBtn.disabled = false;
                 });
-            }, 500);
         });
     }
 
