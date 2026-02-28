@@ -29,7 +29,7 @@
     <nav id="navbar">
         <div class="nav-container">
             <div class="logo">HUB OUTSIDE</div>
-            <a href="#cta-final" class="nav-btn">Entrar no Outside Club</a>
+            <a href="#" class="nav-btn modal-trigger">Lista de Espera</a>
         </div>
     </nav>
 
@@ -49,7 +49,7 @@
                     <h1 class="reveal">Porque algumas coisas só se constroem juntas.</h1>
                     <p class="hero-subtitle reveal">Para a mulher que quer mais. E sabe que não está sozinha — com
                         comunidade, cuidado e crescimento.</p>
-                    <a href="#cta-final" class="btn-primary reveal">Entrar no Outside Club →</a>
+                    <a href="#" class="btn-primary reveal modal-trigger">Garantir meu lugar na lista →</a>
                 </div>
                 <div class="hero-location reveal">Oeiras &middot; Lisboa &middot; Portugal</div>
             </div>
@@ -124,43 +124,61 @@
                     <div class="attr">Eventos presenciais</div>
                     <div class="attr">Apoio especializado</div>
                 </div>
-                <a href="#cta-final" class="btn-secondary reveal">Quero fazer parte</a>
+                <a href="#" class="btn-secondary reveal modal-trigger">Quero entrar na lista</a>
             </div>
         </section>
 
         <!-- SECTION 6: ENTRADA / CTA FINAL -->
         <section id="cta-final">
-            <div class="container">
+            <div class="container" style="text-align: center;">
                 <h2 class="reveal">O seu nome.<br>O seu email.<br>A porta abre-se.</h2>
-                <p class="subtitle reveal">Acesso à comunidade privada HUB OUTSIDE. Sem complicações.</p>
-                <form id="membership-form" class="reveal" novalidate>
+                <p class="subtitle reveal">Faça parte da lista de espera oficial do HUB OUTSIDE.</p>
+                <div class="reveal" style="display: flex; justify-content: center; margin-top: 40px;">
+                    <button class="btn-primary modal-trigger"
+                        style="width: 100%; max-width: 500px; padding: 22px; font-size: 1.1rem;">Quero garantir o meu
+                        lugar &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODAL DE PRÉ-INSCRIÇÃO -->
+        <div id="registration-modal" class="modal-overlay">
+            <div class="modal-content">
+                <button class="close-modal-btn" aria-label="Fechar modal">&times;</button>
+                <div class="modal-header">
+                    <h3>Lista de Espera ✦</h3>
+                    <p>Inscreva-se na nossa lista oficial para ser notificada assim que a comunidade estiver ativa.</p>
+                </div>
+
+                <form id="membership-form" novalidate>
                     <div class="form-row">
-                        <input type="text" name="name" id="input-name" placeholder="Nome" required
-                            autocomplete="given-name">
-                        <input type="email" name="email" id="input-email" placeholder="Email" required
-                            autocomplete="email">
+                        <input type="text" name="name" id="input-name" placeholder="Nome completo" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="email" name="email" id="input-email" placeholder="Email" required>
                     </div>
                     <div class="form-row">
                         <input type="number" name="birth_year" id="input-birth-year"
                             placeholder="Ano de Nascimento (Ex: 1990)" required>
+                    </div>
+                    <div class="form-row">
                         <input type="text" name="location" id="input-location" placeholder="Local de Residência"
                             required>
                     </div>
-                    <button type="submit" class="btn-primary full-width">Garantir lugar na lista de espera
-                        &rarr;</button>
-                    <p class="privacy-note">Ao submeter, irá receber um email assim que abrirmos as candidaturas. Os
-                        seus dados são tratados com o máximo cuidado.
+                    <button type="submit" class="btn-primary full-width">Submeter &rarr;</button>
+                    <p class="privacy-note">Seja bem-vinda ao início de algo maior.
                     </p>
                 </form>
+
                 <div id="success-message" class="hidden">
                     <div class="success-inner">
                         <p class="success-emoji">✦</p>
-                        <h3>Bem-vinda ao Outside Club.</h3>
-                        <p>Em breve, terá notícias nossas.</p>
+                        <h3>Lugar reservado!</h3>
+                        <p>Já está na lista. Avisaremos assim que a comunidade estiver pronta para si.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
     </main>
 

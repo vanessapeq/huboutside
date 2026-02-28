@@ -1,6 +1,52 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
+    // 0. MODAL TOGGLE
+    // ==========================================
+    const modal = document.getElementById('registration-modal');
+    const modalTriggers = document.querySelectorAll('.modal-trigger');
+    const closeModalBtns = document.querySelectorAll('.close-modal-btn');
+
+    const openModal = (e) => {
+        if (e) e.preventDefault();
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Lock scroll
+    };
+
+    const closeModal = () => {
+        modal.classList.remove('show');
+        document.body.style.overflow = ''; // Unlock scroll
+
+        // Reset form after a delay to smooth transitions
+        setTimeout(() => {
+            const form = document.getElementById('membership-form');
+            const successMessage = document.getElementById('success-message');
+            if (form && successMessage && !successMessage.classList.contains('hidden')) {
+                form.style.display = 'block';
+                form.style.opacity = '1';
+                form.style.transform = 'translateY(0)';
+                successMessage.classList.add('hidden');
+                form.reset();
+                // Re-enable button
+                const submitBtn = form.querySelector('button[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.textContent = 'Submeter \u2192';
+                    submitBtn.disabled = false;
+                }
+            }
+        }, 500);
+    };
+
+    modalTriggers.forEach(btn => btn.addEventListener('click', openModal));
+    closeModalBtns.forEach(btn => btn.addEventListener('click', closeModal));
+
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+
+    // ==========================================
     // 1. INTERSECTION OBSERVER — REVEAL ANIMATION
     // ==========================================
     const revealElements = document.querySelectorAll('.reveal');
