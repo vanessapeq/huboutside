@@ -510,6 +510,15 @@ h3 {
     color: var(--bg-dark);
 }
 
+.hw-headline {
+    display: block;
+    font-family: 'Rockville Solid', 'Caveat', cursive;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    color: var(--pink-dusty);
+    margin-bottom: 10px;
+    transform: rotate(-1deg);
+}
+
 #what-you-find>.container>h2 {
     font-family: var(--font-black);
     font-weight: 900;
